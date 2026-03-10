@@ -19,6 +19,17 @@ object Optionals:
       case Just(a) => a
       case _       => orElse
 
+    // PART 5 (MORE FUNCTIONAL COMBINATORS)
+    def mapInt(input: OptionalInt)(predicate: OptionalInt => OptionalInt):  OptionalInt = input match
+      case Empty() => input
+      case _  => predicate(input)
+
+    def filter(input: OptionalInt)(predicate: Int => Boolean):  OptionalInt = input match
+      case Empty() => input
+      case Just(x) => if(predicate(x)) then Just(x) else Empty()
+
+    
+
 @main def tryOptionals(): Unit =
   import Optionals.* // to work with Optionals (to see OptionalInt type)
   import OptionalInt.* // to directly access algorithms
